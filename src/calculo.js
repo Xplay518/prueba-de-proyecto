@@ -14,6 +14,10 @@ function calcularImpuestoYDescuento(categoria) {
           impuestoAdicional = 7; // 7% de impuesto adicional para bebidas alcohólicas
           descuentoAdicional = 0; // 0% de descuento adicional para bebidas alcohólicas
           break;
+      case 'materialEscritorio':
+          impuestoAdicional = 0; // 0% de impuesto adicional para material de escritorio
+          descuentoAdicional = 1.5; // 1.5% de descuento adicional para material de escritorio
+          break;
       default:
           break;
   }
