@@ -37,8 +37,8 @@ function calcularImpuestoYDescuento(categoria) {
     return { impuestoAdicional, descuentoAdicional };
   }
   
-  // Función para calcular el costo de envío según el peso volumétrico
-  function calcularCostoEnvio(peso) {
+  // Función para calcular el costo de envío según el peso volumétrico y el tipo de cliente
+  function calcularCostoEnvio(peso, tipoCliente) {
     let costoEnvio = 0;
   
     if (peso >= 0 && peso <= 10) {
@@ -56,6 +56,19 @@ function calcularImpuestoYDescuento(categoria) {
     } else {
       costoEnvio = 9;
     }
+  
+    // Aplicar descuento en el costo de envío según el tipo de cliente
+    switch (tipoCliente) {
+      case 'Normal':
+        descuentoEnvio = 0;
+        break;
+      // Agregar más casos para otros tipos de cliente y sus respectivos descuentos
+      default:
+        descuentoEnvio = 0;
+        break;
+    }
+  
+    costoEnvio -= (costoEnvio * descuentoEnvio) / 100;
   
     return costoEnvio;
   }
