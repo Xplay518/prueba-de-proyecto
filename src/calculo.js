@@ -68,6 +68,9 @@ function calcularImpuestoYDescuento(categoria) {
       case 'Antiguo Recurrente':
         descuentoEnvio = 1; // Descuento del 1% para clientes antiguos recurrentes
         break;
+      case 'Cliente Especial':
+        descuentoEnvio = 1.5; // Descuento del 1.5% para clientes especiales
+        break;
       // Agregar más casos para otros tipos de cliente y sus respectivos descuentos
       default:
         descuentoEnvio = 0;
