@@ -26,6 +26,10 @@ function calcularImpuestoYDescuento(categoria) {
             impuestoAdicional = 4; // 4% de impuesto adicional para electrónicos
             descuentoAdicional = 1; // 1% de descuento adicional para electrónicos
             break;
+        case 'Varios':
+            impuestoAdicional = 0; // 0% de impuesto adicional para varios
+            descuentoAdicional = 0; // 0% de descuento adicional para varios
+            break;
         default:
             break;
     }
@@ -33,5 +37,28 @@ function calcularImpuestoYDescuento(categoria) {
     return { impuestoAdicional, descuentoAdicional };
   }
   
-  module.exports = { calcularImpuestoYDescuento }; // Exportar la función como un objeto
+  // Función para calcular el costo de envío según el peso volumétrico
+  function calcularCostoEnvio(peso) {
+    let costoEnvio = 0;
+  
+    if (peso >= 0 && peso <= 10) {
+      costoEnvio = 0;
+    } else if (peso <= 20) {
+      costoEnvio = 3.5;
+    } else if (peso <= 40) {
+      costoEnvio = 5;
+    } else if (peso <= 80) {
+      costoEnvio = 6;
+    } else if (peso <= 100) {
+      costoEnvio = 6.5;
+    } else if (peso <= 200) {
+      costoEnvio = 8;
+    } else {
+      costoEnvio = 9;
+    }
+  
+    return costoEnvio;
+  }
+  
+  module.exports = { calcularImpuestoYDescuento, calcularCostoEnvio }; // Exportar las funciones como un objeto
   
