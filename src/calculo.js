@@ -10,7 +10,10 @@ function calcularImpuestoYDescuento(categoria) {
           impuestoAdicional = 0; // 0% de impuesto adicional para alimentos
           descuentoAdicional = 2; // 2% de descuento adicional para alimentos
           break;
-      // Agregar más casos para otras categorías aquí según sea necesario
+      case 'bebidasAlcoholicas':
+          impuestoAdicional = 7; // 7% de impuesto adicional para bebidas alcohólicas
+          descuentoAdicional = 0; // 0% de descuento adicional para bebidas alcohólicas
+          break;
       default:
           break;
   }
@@ -18,4 +21,4 @@ function calcularImpuestoYDescuento(categoria) {
   return { impuestoAdicional, descuentoAdicional };
 }
 
-module.exports = calcularImpuestoYDescuento;
+module.exports = { calcularImpuestoYDescuento }; // Exportar la función como un objeto
