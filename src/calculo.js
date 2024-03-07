@@ -68,8 +68,8 @@ function calcularImpuestoYDescuento(categoria) {
       case 'Antiguo Recurrente':
         descuentoEnvio = 1; // Descuento del 1% para clientes antiguos recurrentes
         break;
-      case 'Cliente Especial':
-        descuentoEnvio = 1.5; // Descuento del 1.5% para clientes especiales
+      case 'Especial':
+        descuentoEnvio = 0; // Descuento inicial del 0% para clientes especiales
         break;
       // Agregar más casos para otros tipos de cliente y sus respectivos descuentos
       default:
@@ -82,5 +82,22 @@ function calcularImpuestoYDescuento(categoria) {
     return costoEnvio;
   }
   
-  module.exports = { calcularImpuestoYDescuento, calcularCostoEnvio }; // Exportar las funciones como un objeto
+  // Función para aplicar descuentos de monto fijo según el tipo de cliente, el precio neto de la orden y la categoría del producto
+  function aplicarDescuentoMontoFijo(precioNeto, categoria, tipoCliente) {
+    let descuentoMontoFijo = 0;
+  
+    // Verificar si el tipo de cliente es Recurrente y el precio neto es mayor a 3000 y la categoría es Alimentos
+    if (tipoCliente === 'Recurrente' && precioNeto > 3000 && categoria === 'alimentos') {
+      descuentoMontoFijo = 100; // Descuento de $100 para clientes recurrentes con precio neto mayor a 3000 y categoría de alimentos
+    }
+  
+    // Verificar si el tipo de cliente es Especial y el precio neto es mayor a 7000 y la categoría es Electrónicos
+    if (tipoCliente === 'Especial' && precioNeto > 7000 && categoria === 'Electronicos') {
+      descuentoMontoFijo = 200; // Descuento de $200 para clientes especiales con precio neto mayor a 7000 y categoría de electrónicos
+    }
+  
+    return descuentoMontoFijo;
+  }
+  
+  module.exports = { calcularImpuestoYDescuento, calcularCostoEnvio, aplicarDescuentoMontoFijo }; // Exportar las funciones como un objeto
   
