@@ -64,7 +64,7 @@ function calcularImpuestoYDescuento(categoria) {
     return tasaImpuesto;
   }
   
-  // Función para calcular el descuento basado en el total de la orden
+  // Función para calcular el descuento por total de la orden
   function calcularDescuentoPorTotalOrden(totalOrden) {
     let tasaDescuento = 0;
   
@@ -77,7 +77,7 @@ function calcularImpuestoYDescuento(categoria) {
     } else if (totalOrden >= 10000 && totalOrden < 30000) {
       tasaDescuento = 10; // 10% de descuento para órdenes entre 10000 y 30000
     } else if (totalOrden >= 30000) {
-      tasaDescuento = 15; // 15% de descuento para órdenes mayores o iguales a 30000
+      tasaDescuento = 15; // 15% de descuento para órdenes mayores a 30000
     }
   
     return tasaDescuento;
