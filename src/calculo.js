@@ -37,49 +37,55 @@ function calcularImpuestoYDescuento(categoria) {
     return { impuestoAdicional, descuentoAdicional };
   }
   
-  // Función para calcular el costo de envío según el peso volumétrico y el tipo de cliente
-  function calcularCostoEnvio(peso, tipoCliente) {
-    let costoEnvio = 0;
+  // Función para calcular el impuesto por estado
+  function calcularImpuestoPorEstado(estado) {
+    let tasaImpuesto = 0;
   
-    if (peso >= 0 && peso <= 10) {
-      costoEnvio = 0;
-    } else if (peso <= 20) {
-      costoEnvio = 3.5;
-    } else if (peso <= 40) {
-      costoEnvio = 5;
-    } else if (peso <= 80) {
-      costoEnvio = 6;
-    } else if (peso <= 100) {
-      costoEnvio = 6.5;
-    } else if (peso <= 200) {
-      costoEnvio = 8;
-    } else {
-      costoEnvio = 9;
+    switch (estado) {
+      case 'UT':
+        tasaImpuesto = 6.65;
+        break;
+      case 'NV':
+        tasaImpuesto = 8.00;
+        break;
+      case 'TX':
+        tasaImpuesto = 6.25;
+        break;
+      case 'AL':
+        tasaImpuesto = 4.00;
+        break;
+      case 'CA':
+        tasaImpuesto = 8.25;
+        break;
+      default:
+        break;
     }
   
-    // Aplicar descuento en el costo de envío según el tipo de cliente
+    return tasaImpuesto;
+  }
+  
+  // Función para calcular el descuento adicional por tipo de cliente
+  function calcularDescuentoPorTipoCliente(tipoCliente) {
+    let descuentoPorTipoCliente = 0;
+  
     switch (tipoCliente) {
       case 'Normal':
-        descuentoEnvio = 0;
+        descuentoPorTipoCliente = 0;
         break;
       case 'Recurrente':
-        descuentoEnvio = 0;
-        break; // Descuento del 0% para clientes recurrentes
+        descuentoPorTipoCliente = 0.5; // 0.5% de descuento adicional para clientes recurrentes
+        break;
       case 'Antiguo Recurrente':
-        descuentoEnvio = 1; // Descuento del 1% para clientes antiguos recurrentes
+        descuentoPorTipoCliente = 1; // 1% de descuento adicional para clientes antiguos recurrentes
         break;
       case 'Especial':
-        descuentoEnvio = 0; // Descuento inicial del 0% para clientes especiales
+        descuentoPorTipoCliente = 1.5; // 1.5% de descuento adicional para clientes especiales
         break;
-      // Agregar más casos para otros tipos de cliente y sus respectivos descuentos
       default:
-        descuentoEnvio = 0;
         break;
     }
   
-    costoEnvio -= (costoEnvio * descuentoEnvio) / 100;
-  
-    return costoEnvio;
+    return descuentoPorTipoCliente;
   }
   
   // Función para aplicar descuentos de monto fijo según el tipo de cliente, el precio neto de la orden y la categoría del producto
@@ -99,5 +105,5 @@ function calcularImpuestoYDescuento(categoria) {
     return descuentoMontoFijo;
   }
   
-  module.exports = { calcularImpuestoYDescuento, calcularCostoEnvio, aplicarDescuentoMontoFijo }; // Exportar las funciones como un objeto
+  module.exports = { calcularImpuestoYDescuento, calcularImpuestoPorEstado, calcularDescuentoPorTipoCliente, aplicarDescuentoMontoFijo };
   
