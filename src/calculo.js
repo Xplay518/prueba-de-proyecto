@@ -22,6 +22,10 @@ function calcularImpuestoYDescuento(categoria) {
             impuestoAdicional = 3; // 3% de impuesto adicional para muebles
             descuentoAdicional = 0; // 0% de descuento adicional para muebles
             break;
+        case 'Electronicos':
+            impuestoAdicional = 4; // 4% de impuesto adicional para electrónicos
+            descuentoAdicional = 1; // 1% de descuento adicional para electrónicos
+            break;
         default:
             break;
     }
