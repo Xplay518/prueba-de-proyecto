@@ -1,7 +1,5 @@
-// item.js
+// presenter.js
 
-// Importar la función calcularImpuestoYDescuento desde calculo.js
-const { calcularImpuestoYDescuento } = require('./calculo.js');
 // Importar la función mostrarMensaje desde presenter.js
 const { mostrarMensaje } = require('./presenter.js');
 
