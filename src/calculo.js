@@ -62,6 +62,9 @@ function calcularImpuestoYDescuento(categoria) {
       case 'Normal':
         descuentoEnvio = 0;
         break;
+      case 'Recurrente':
+        descuentoEnvio = 0;
+        break; // Descuento del 0% para clientes recurrentes
       // Agregar más casos para otros tipos de cliente y sus respectivos descuentos
       default:
         descuentoEnvio = 0;
