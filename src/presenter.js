@@ -1,18 +1,13 @@
 // presenter.js
 
-// Importar la función mostrarMensaje desde presenter.js
-const { mostrarMensaje } = require('./presenter.js');
+// Función para mostrar el mensaje en la interfaz de usuario
+function mostrarMensaje(cantidad, precioItem, categoria, estado, totalOrden, tipoCliente, impuestoAdicional, descuentoAdicional, impuestoPorEstado, descuentoPorTotalOrden) {
+    // Construir el mensaje con los datos proporcionados
+    const mensaje = `Cantidad de ítems ingresados: ${cantidad}<br>Precio por ítem: ${precioItem}<br>Categoría seleccionada: ${categoria}<br>Estado seleccionado: ${estado}<br>Total de la orden: ${totalOrden}<br>Tipo de cliente: ${tipoCliente}<br>Impuesto adicional por categoría: ${impuestoAdicional}%<br>Descuento adicional por categoría: ${descuentoAdicional}%<br>Tasa de impuesto por estado: ${impuestoPorEstado}%<br>Tasa de descuento por total de la orden: ${descuentoPorTotalOrden}%`;
 
-document.getElementById('mostrarBtn').addEventListener('click', function() {
-    // Obtener la cantidad de ítems ingresada por el usuario
-    const cantidad = document.getElementById('cantidad').value;
+    // Mostrar el mensaje en el div con id "mensaje"
+    document.getElementById('mensaje').innerHTML = mensaje;
+}
 
-    // Obtener la categoría de producto seleccionada por el usuario
-    const categoria = document.getElementById('categoria').value;
-
-    // Calcular el impuesto adicional y el descuento adicional por categoría utilizando la función importada
-    const { impuestoAdicional, descuentoAdicional } = calcularImpuestoYDescuento(categoria);
-
-    // Llamar a la función mostrarMensaje en presenter.js para mostrar el mensaje en la interfaz de usuario
-    mostrarMensaje(cantidad, categoria, impuestoAdicional, descuentoAdicional);
-});
+// Exportar la función para que esté disponible para otros módulos
+module.exports = { mostrarMensaje };

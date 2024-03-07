@@ -64,46 +64,24 @@ function calcularImpuestoYDescuento(categoria) {
     return tasaImpuesto;
   }
   
-  // Función para calcular el descuento adicional por tipo de cliente
-  function calcularDescuentoPorTipoCliente(tipoCliente) {
-    let descuentoPorTipoCliente = 0;
+  // Función para calcular el descuento basado en el total de la orden
+  function calcularDescuentoPorTotalOrden(totalOrden) {
+    let tasaDescuento = 0;
   
-    switch (tipoCliente) {
-      case 'Normal':
-        descuentoPorTipoCliente = 0;
-        break;
-      case 'Recurrente':
-        descuentoPorTipoCliente = 0.5; // 0.5% de descuento adicional para clientes recurrentes
-        break;
-      case 'Antiguo Recurrente':
-        descuentoPorTipoCliente = 1; // 1% de descuento adicional para clientes antiguos recurrentes
-        break;
-      case 'Especial':
-        descuentoPorTipoCliente = 1.5; // 1.5% de descuento adicional para clientes especiales
-        break;
-      default:
-        break;
+    if (totalOrden >= 1000 && totalOrden < 3000) {
+      tasaDescuento = 3; // 3% de descuento para órdenes entre 1000 y 3000
+    } else if (totalOrden >= 3000 && totalOrden < 7000) {
+      tasaDescuento = 5; // 5% de descuento para órdenes entre 3000 y 7000
+    } else if (totalOrden >= 7000 && totalOrden < 10000) {
+      tasaDescuento = 7; // 7% de descuento para órdenes entre 7000 y 10000
+    } else if (totalOrden >= 10000 && totalOrden < 30000) {
+      tasaDescuento = 10; // 10% de descuento para órdenes entre 10000 y 30000
+    } else if (totalOrden >= 30000) {
+      tasaDescuento = 15; // 15% de descuento para órdenes mayores o iguales a 30000
     }
   
-    return descuentoPorTipoCliente;
+    return tasaDescuento;
   }
   
-  // Función para aplicar descuentos de monto fijo según el tipo de cliente, el precio neto de la orden y la categoría del producto
-  function aplicarDescuentoMontoFijo(precioNeto, categoria, tipoCliente) {
-    let descuentoMontoFijo = 0;
-  
-    // Verificar si el tipo de cliente es Recurrente y el precio neto es mayor a 3000 y la categoría es Alimentos
-    if (tipoCliente === 'Recurrente' && precioNeto > 3000 && categoria === 'alimentos') {
-      descuentoMontoFijo = 100; // Descuento de $100 para clientes recurrentes con precio neto mayor a 3000 y categoría de alimentos
-    }
-  
-    // Verificar si el tipo de cliente es Especial y el precio neto es mayor a 7000 y la categoría es Electrónicos
-    if (tipoCliente === 'Especial' && precioNeto > 7000 && categoria === 'Electronicos') {
-      descuentoMontoFijo = 200; // Descuento de $200 para clientes especiales con precio neto mayor a 7000 y categoría de electrónicos
-    }
-  
-    return descuentoMontoFijo;
-  }
-  
-  module.exports = { calcularImpuestoYDescuento, calcularImpuestoPorEstado, calcularDescuentoPorTipoCliente, aplicarDescuentoMontoFijo };
+  module.exports = { calcularImpuestoYDescuento, calcularImpuestoPorEstado, calcularDescuentoPorTotalOrden };
   
